@@ -7,7 +7,7 @@ import game_data
 ### Global Variables ###
 first_data = randint(0,len(game_data.data)-1)
 second_data = 0
-goon = True
+go_on = True
 score = 0
 ### Funcktions ###
 def print_data(list_nr):
@@ -15,7 +15,7 @@ def print_data(list_nr):
   return game_data.data[list_nr]['follower_count']
 
 ### Program ###
-while goon:
+while go_on:
   clear()
   print(art.logo)
   if score > 0:
@@ -27,15 +27,17 @@ while goon:
   print(art.vs)
   print("Against B:")
   second_data = randint(0,len(game_data.data)-1)
+  if second_data == first_data:
+    second_data -=10
   folowers_b = print_data(second_data)
-  guess = input("Who has more folowers? A or B: ")
+  guess = input("Who has more folowers? A or B: ").upper()
   result = "A" if folowers_a > folowers_b else "B"
-  if result == guess.upper():
+  if result == guess:
     score += 1
     first_data=second_data
-    goon =True
   else:
     clear()
     print(art.logo)
     print(f"Sorry, that was wrong. Final score: {score}")
-    goon = False
+    score = 0
+    go_on = False if input("Do you want to try again ? Y/n: ") == "n" else True
