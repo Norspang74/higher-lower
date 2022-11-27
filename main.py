@@ -4,32 +4,34 @@ from random import randint
 import art
 import game_data
 
+
 ### Global Variables ###
 first_data = randint(0,len(game_data.data)-1)
 second_data = 0
 go_on = True
 score = 0
+
+
 ### Funcktions ###
-def print_data(list_nr):
+def print_insta_data(list_nr):
   print(f"{game_data.data[list_nr]['name']} is a {game_data.data[list_nr]['description']} from {game_data.data[list_nr]['country']}")
   return game_data.data[list_nr]['follower_count']
+
 
 ### Program ###
 while go_on:
   clear()
+  ### setup the board ###
   print(art.logo)
-  if score > 0:
-    print (f"Your score is {score}.")
-  else:
-    print ("")
+  print (f"Your score is {score}.") if score > 0 else print("hello")
   print("Campare A:")
-  folowers_a = print_data(first_data)
+  folowers_a = print_insta_data(first_data)
   print(art.vs)
   print("Against B:")
   second_data = randint(0,len(game_data.data)-1)
   if second_data == first_data:
     second_data -=10
-  folowers_b = print_data(second_data)
+  folowers_b = print_insta_data(second_data)
   guess = input("Who has more folowers? A or B: ").upper()
   result = "A" if folowers_a > folowers_b else "B"
   if result == guess:
