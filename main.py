@@ -1,5 +1,5 @@
 ### Package import ###
-from replit import clear
+from usefull_def import clear
 from random import randint
 import art
 import game_data
